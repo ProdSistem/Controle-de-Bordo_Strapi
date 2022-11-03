@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "functionaries",
+  "info": {
+    "singularName": "functionary",
+    "pluralName": "functionaries",
+    "displayName": "Functionary"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "cost_center": {
+      "type": "integer",
+      "required": true
+    },
+    "cpf": {
+      "type": "string",
+      "regex": "(\\d{3})(\\d{3})(\\d{3})(\\d{2})",
+      "required": true,
+      "unique": true
+    },
+    "email": {
+      "type": "email",
+      "unique": true,
+      "required": true
+    },
+    "registration": {
+      "type": "integer"
+    },
+    "cnh": {
+      "type": "integer",
+      "unique": true
+    },
+    "category_cnh": {
+      "type": "string"
+    },
+    "expiration_date_cnh": {
+      "type": "date"
+    },
+    "function": {
+      "type": "integer",
+      "unique": false,
+      "required": true
+    },
+    "created_for": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
+    },
+    "updated_for": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
+    }
+  }
+}
