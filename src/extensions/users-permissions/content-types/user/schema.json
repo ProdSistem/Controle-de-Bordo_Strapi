@@ -78,6 +78,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "admin::user"
+    },
+    "admin_users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "admin::user"
     }
   }
 }
