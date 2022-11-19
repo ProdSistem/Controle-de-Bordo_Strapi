@@ -83,6 +83,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "admin::user"
+    },
+    "brand": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::brand.brand",
+      "inversedBy": "updated_fors"
     }
   }
 }

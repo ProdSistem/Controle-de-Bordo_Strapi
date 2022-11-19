@@ -59,6 +59,31 @@
     },
     "data": {
       "type": "date"
+    },
+    "gearshift_type": {
+      "type": "string",
+      "required": true
+    },
+    "equipment_name": {
+      "type": "string",
+      "required": true
+    },
+    "patrimony_code": {
+      "type": "string",
+      "required": true
+    },
+    "capacity": {
+      "type": "string",
+      "required": true
+    },
+    "owner_name": {
+      "type": "string",
+      "required": true
+    },
+    "registered_by": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }
