@@ -70,7 +70,7 @@
     },
     "patrimony_code": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "capacity": {
       "type": "string",
@@ -80,10 +80,20 @@
       "type": "string",
       "required": true
     },
-    "registered_by": {
+    "created_for": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "updated_for": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "status": {
+      "type": "boolean",
+      "default": true,
+      "required": true
     }
   }
 }
