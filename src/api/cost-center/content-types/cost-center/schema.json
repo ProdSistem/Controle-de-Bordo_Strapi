@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cost_centers",
+  "info": {
+    "singularName": "cost-center",
+    "pluralName": "cost-centers",
+    "displayName": "CostCenter",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "created_for": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "status": {
+      "type": "boolean",
+      "default": true
+    },
+    "updated_for": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}
