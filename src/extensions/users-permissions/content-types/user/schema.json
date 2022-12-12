@@ -72,23 +72,21 @@
     "created_for": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "admin::user"
+      "target": "plugin::users-permissions.user"
     },
     "updated_for": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "admin::user"
+      "target": "plugin::users-permissions.user"
     },
-    "admin_users": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "admin::user"
+    "status": {
+      "type": "boolean",
+      "default": true,
+      "required": true
     },
-    "brand": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::brand.brand",
-      "inversedBy": "updated_fors"
+    "email_functional": {
+      "type": "email",
+      "unique": true
     }
   }
 }
