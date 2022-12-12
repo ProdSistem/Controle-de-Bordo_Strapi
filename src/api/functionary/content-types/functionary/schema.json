@@ -4,7 +4,8 @@
   "info": {
     "singularName": "functionary",
     "pluralName": "functionaries",
-    "displayName": "Functionary"
+    "displayName": "Functionary",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,26 +17,18 @@
       "unique": true,
       "required": true
     },
-    "cost_center": {
-      "type": "integer",
-      "required": true
-    },
     "cpf": {
       "type": "string",
       "regex": "(\\d{3})(\\d{3})(\\d{3})(\\d{2})",
       "required": true,
       "unique": true
     },
-    "email": {
-      "type": "email",
-      "unique": true,
-      "required": true
-    },
     "registration": {
-      "type": "integer"
+      "type": "integer",
+      "unique": true
     },
     "cnh": {
-      "type": "integer",
+      "type": "biginteger",
       "unique": true
     },
     "category_cnh": {
@@ -52,12 +45,60 @@
     "created_for": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "admin::user"
+      "target": "plugin::users-permissions.user"
     },
     "updated_for": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "admin::user"
+      "target": "plugin::users-permissions.user"
+    },
+    "status": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "observation": {
+      "type": "text"
+    },
+    "state": {
+      "type": "string",
+      "required": true
+    },
+    "city": {
+      "type": "string",
+      "required": true
+    },
+    "zip_code": {
+      "type": "string",
+      "required": false
+    },
+    "district": {
+      "type": "string",
+      "required": false
+    },
+    "street": {
+      "type": "string",
+      "required": false
+    },
+    "number": {
+      "type": "string",
+      "required": false
+    },
+    "complement": {
+      "type": "string"
+    },
+    "phone_number": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "admission_date": {
+      "type": "date",
+      "required": true
+    },
+    "email": {
+      "type": "string",
+      "unique": true
     }
   }
 }
