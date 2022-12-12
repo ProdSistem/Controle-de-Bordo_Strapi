@@ -1,0 +1,18 @@
+export const itensBoardRegister = [
+  'Cód. Boletim',
+  'Matrícula Condutor',
+  'Nome do Condutor',
+  'Centro de Resultado',
+  'Data',
+  'Código Veículo',
+  'Placa',
+  'Km Inicial',
+  'Km Final',
+  'Km Rodado',
+  'Itinerário Origem',
+  'Itinerário Destino',
+  'Houve Abastecimento',
+  'Quantidade Abastecida',
+  'R$ Unit',
+  'R$ Total',
+];
