@@ -1,0 +1,78 @@
+{
+  "kind": "collectionType",
+  "collectionName": "board_registers",
+  "info": {
+    "singularName": "board-register",
+    "pluralName": "board-registers",
+    "displayName": "BoardRegister",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "functionary_id": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::functionary.functionary"
+    },
+    "cost_center_id": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::cost-center.cost-center"
+    },
+    "vehicle_id": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::vehicle.vehicle"
+    },
+    "initial_km": {
+      "type": "biginteger",
+      "required": true
+    },
+    "final_km": {
+      "type": "biginteger",
+      "required": true
+    },
+    "origin": {
+      "type": "string",
+      "required": true
+    },
+    "destination": {
+      "type": "string",
+      "required": true
+    },
+    "refuelling_status": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "refuel_qty": {
+      "type": "decimal"
+    },
+    "refuel_unit_value": {
+      "type": "decimal"
+    },
+    "refuel_total_value": {
+      "type": "decimal"
+    },
+    "type_of_fuel": {
+      "type": "string"
+    },
+    "created_for": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "updated_for": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "date_register": {
+      "type": "date",
+      "required": true
+    }
+  }
+}
