@@ -1,4 +1,4 @@
-name: Deploy GN Center BackEnd Automation
+name: Deploy GN Center BackEnd 
 
 on:
   workflow_dispatch:
