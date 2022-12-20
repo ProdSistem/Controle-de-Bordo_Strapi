@@ -1,0 +1,37 @@
+name: Deploy GN Center BackEnd Automation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, develop]
+
+jobs:
+  deploy-production:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-20.04
+    concurrency: deploy-to-production
+    steps:
+      - uses: actions/checkout@v3
+      - name: executing remote ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: bash gncenter/deploy-backend-production.sh
+  deploy-develop:
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-20.04
+    concurrency: deploy-to-develop
+    steps:
+      - uses: actions/checkout@v3
+      - name: executing remote ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: bash gncenter/deploy-backend-develop.sh
+
