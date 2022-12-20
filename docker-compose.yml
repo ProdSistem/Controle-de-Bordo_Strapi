@@ -2,7 +2,9 @@ version: '3'
 services:
   gncenter:
     container_name: gncenter-producao
-    build: ./Dockerfile.prod
+    build: 
+      context: ./
+      dockerfile: Dockerfile.prod
     image: strapi:producao
     restart: unless-stopped
     env_file: .env
