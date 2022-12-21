@@ -2,7 +2,9 @@ version: '3'
 services:
   gncenter:
     container_name: gncenter-homologacao
-    build: ./Dockerfile.hml
+    build:
+      context: ./
+      dockerfile: Dockerfile.hml
     image: strapi:homologacao
     restart: unless-stopped
     env_file: .env
@@ -26,6 +28,13 @@ services:
       - ./public/uploads:/opt/app/public/uploads
     ports:
       - '1335:1335'
-    depends_on:
-      - strapiDB
+    networks:
+      - strapi
 
+volumes:
+  strapi-data:
+
+networks:
+  strapi:
+    name: Strapi
+    driver: bridge
