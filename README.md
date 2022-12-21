@@ -4,6 +4,8 @@ T1, T4, T5. T6, T7, T8, T9 Strapi comes with a full featured [Command Line Inter
 
 ### `develop`
 
+TD1, TD2
+
 Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-develop)
 
 ```
