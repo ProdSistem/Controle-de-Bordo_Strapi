@@ -9,5 +9,5 @@ ENV PATH /opt/app/node_modules/.bin:$PATH
 RUN npm install
 COPY . .
 RUN npm run build
-EXPOSE 1337
+EXPOSE 1335
 CMD ["npm", "run", "develop"]
