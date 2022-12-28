@@ -7,16 +7,11 @@ import utils from '../utils';
 export default {
   exportBoardRegister: async (ctx, next) => {
     try {
-      const date_initial =
-        new Date(ctx.query.date_initial).getTime() > 0
-          ? ctx.query.date_initial
-          : '';
-      const date_final =
-        new Date(ctx.query.date_final).getTime() > 0
-          ? ctx.query.date_final
-          : '';
+      const date_initial = ctx.query.date_initial;
+      const date_final = ctx.query.date_final;
       const functionary_name = ctx.query.functionary_name;
       const cost_center_code = ctx.query.cost_center_code;
+      const plateVehicle = ctx.query.plateVehicle;
       const itens = utils.itensBoardRegister;
 
       const boardRegister = await utils.filtersBoardRegister(
@@ -24,42 +19,68 @@ export default {
         cost_center_code,
         date_initial,
         date_final,
+        plateVehicle,
       );
       const wb = new xl.Workbook(utils.defaultFont);
 
       const ws = wb.addWorksheet('RELATÓRIO');
 
-      const headerCenter = wb.createStyle(utils.headerCenterStyle);
-
-      const headerLeft = wb.createStyle(utils.headerLeftStyle);
-
-      utils.createTitleBoardRegister(ws, headerCenter, headerLeft, itens);
+      utils.createTitleBoardRegister(
+        ws,
+        itens,
+        functionary_name,
+        cost_center_code,
+        date_initial,
+        date_final,
+        plateVehicle,
+      );
 
       boardRegister.map((value, keys) => {
         const refuelling_status = value.refuelling_status ? 'Sim' : 'Não';
-        const key = 6 + keys;
+        const key = 5 + keys;
         ws.cell(key, 1).number(value.id);
         ws.cell(key, 2).number(Number(value.functionary_id.registration));
         ws.cell(key, 3).string(`${value.functionary_id.name}`);
         ws.cell(key, 4).string(`${value.cost_center_id.code}`);
-        ws.cell(key, 5).date(new Date(value.createdAt)).style({numberFormat: 'DD/MM/YYYY'});
+        ws.cell(key, 5)
+          .date(new Date(value.createdAt))
+          .style({ numberFormat: 'DD/MM/YYYY' });
         ws.cell(key, 6).string(`${value.vehicle_id.code}`);
         ws.cell(key, 7).string(`${value.vehicle_id.plate}`);
-        ws.cell(key, 8).number(Number(value.initial_km)).style({numberFormat: '#,##0; (#,##0); -'});
-        ws.cell(key, 9).number(Number(value.final_km)).style({numberFormat: '#,##0; (#,##0); -'});
-        ws.cell(key, 10).formula(`I${key} - H${key}`).style({numberFormat: '#,##0; (#,##0); -'});
+        ws.cell(key, 8)
+          .number(Number(value.initial_km))
+          .style({ numberFormat: '#,##0; (#,##0); -' });
+        ws.cell(key, 9)
+          .number(Number(value.final_km))
+          .style({ numberFormat: '#,##0; (#,##0); -' });
+        ws.cell(key, 10)
+          .formula(`I${key} - H${key}`)
+          .style({ numberFormat: '#,##0; (#,##0); -' });
         ws.cell(key, 11).string(`${value.origin}`);
         ws.cell(key, 12).string(`${value.destination}`);
         ws.cell(key, 13).string(`${refuelling_status}`);
-        ws.cell(key, 14).number(Number(value.refuel_qty)).style({numberFormat: '#,##0; (#,##0); -'});
-        ws.cell(key, 15).number(Number(value.refuel_unit_value)).style({numberFormat: 'R$#,##0.00; (R$#,##0.00); -'});
-        ws.cell(key, 16).formula(`N${6 + keys} * O${6 + keys}`).style({numberFormat: 'R$#,##0.00; (R$#,##0.00); -'});
-        if(key % 2 === 0){
-          ws.cell(key, 1, key, 16).style({fill: { type: 'pattern', patternType: 'solid', bgColor: '9bc2e6', fgColor: 'ddebf7' }})
+        ws.cell(key, 14)
+          .number(Number(value.refuel_qty))
+          .style({ numberFormat: '#,##0; (#,##0); -' });
+        ws.cell(key, 15)
+          .number(Number(value.refuel_unit_value))
+          .style({ numberFormat: 'R$#,##0.00; (R$#,##0.00); -' });
+        ws.cell(key, 16)
+          .formula(`N${6 + keys} * O${6 + keys}`)
+          .style({ numberFormat: 'R$#,##0.00; (R$#,##0.00); -' });
+        if (key % 2 === 0) {
+          ws.cell(key, 1, key, 16).style({
+            fill: {
+              type: 'pattern',
+              patternType: 'solid',
+              bgColor: '9bc2e6',
+              fgColor: 'ddebf7',
+            },
+          });
         }
       });
 
-      ws.row(5).filter({
+      ws.row(4).filter({
         firstRow: 1,
         firstColumn: 1,
         lastRow: 900,
@@ -82,7 +103,7 @@ export default {
       ws.column(15).setWidth(12);
       ws.column(16).setWidth(12);
 
-      var buffer = await wb.writeToBuffer();
+      const buffer = await wb.writeToBuffer();
       ctx.body = buffer;
     } catch (err) {
       ctx.body = err;
