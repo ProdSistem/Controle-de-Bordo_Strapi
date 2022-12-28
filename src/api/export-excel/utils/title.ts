@@ -35,3 +35,50 @@ export const createTitleBoardRegister = (
   });
   return ws;
 };
+
+export const createTitleFunctionary = (
+  ws,
+  itens,
+  registration,
+  name,
+  active,
+) => {
+  let status;
+  if (active === 'true') {
+    status = 'Ativo';
+  } else if (active === 'false') {
+    status = 'Desativado';
+  } else {
+    status = 'Todos';
+  }
+
+  ws.cell(2, 1, 2, 18, true)
+    .string(`RELATÓRIO DE BORDO`)
+    .style(headerCenterStyle);
+
+  ws.cell(3, 1, 3, 1, true).string('FILTROS:').style(headerLeftStyle);
+  ws.cell(3, 2, 3, 4, true)
+    .string(`Matrícula: ${registration}`)
+    .style(headerLeftStyle);
+  ws.cell(3, 5, 3, 11, true).string(`Nome: ${name}`).style(headerLeftStyle);
+  ws.cell(3, 12, 3, 15, true)
+    .string(`Status: ${status}`)
+    .style(headerLeftStyle);
+  ws.cell(3, 16, 3, 18, true).date(new Date()).style(headerCenterStyle);
+  ws.cell(4, 12, 4, 18, true)
+    .string(`Endereço ${active}`)
+    .style(headerCenterStyle);
+
+  itens.map((item, key) => {
+    if (key + 1 <= 11) {
+      ws.cell(4, key + 1, 5, key + 1, true)
+        .string(`${item}`)
+        .style(headerCenterStyle);
+    } else {
+      ws.cell(5, key + 1)
+        .string(`${item}`)
+        .style(headerCenterStyle);
+    }
+  });
+  return ws;
+};

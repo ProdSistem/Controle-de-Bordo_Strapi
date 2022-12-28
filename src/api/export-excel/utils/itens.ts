@@ -16,3 +16,24 @@ export const itensBoardRegister = [
   'R$ Unit',
   'R$ Total',
 ];
+
+export const itensFunctionary = [
+  'Matrícula',
+  'Nome',
+  'CPF',
+  'E-mail',
+  'Data de Admissão',
+  'Função',
+  'Telefone',
+  'Número da CNH',
+  'Categoria da CNH',
+  'Validade da CNH',
+  'Status',
+  'Rua',
+  'Numero',
+  'Bairro',
+  'Cidade',
+  'Estado',
+  'CEP',
+  'Complemento',
+];

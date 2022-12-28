@@ -109,4 +109,94 @@ export default {
       ctx.body = err;
     }
   },
+
+  exportFunctionary: async (ctx, next) => {
+    const registration = ctx.query.registration;
+    const name = ctx.query.name;
+    const active = ctx.query.active;
+    const itens = utils.itensFunctionary;
+
+    try {
+      const wb = new xl.Workbook(utils.defaultFont);
+
+      const ws = wb.addWorksheet('RELATÓRIO');
+      const functionary = await utils.filtersFunctionary(
+        registration,
+        name,
+        active,
+      );
+
+      utils.createTitleFunctionary(ws, itens, registration, name, active);
+
+      functionary.map((value, keys) => {
+        const status = value.status ? 'Ativo' : 'Desativado';
+        const function_id = value.function_id ? value.function_id.name : '';
+        const cnh = value.cnh ? value.cnh : '';
+        const key = 6 + keys;
+        ws.cell(key, 1).string(`${value.registration}`);
+        ws.cell(key, 2).string(`${value.name}`);
+        ws.cell(key, 3).string(`${value.cpf}`);
+        ws.cell(key, 4).string(`${value.email}`);
+        ws.cell(key, 5)
+          .date(new Date(value.admission_date))
+          .style({ numberFormat: 'DD/MM/YYYY' });
+        ws.cell(key, 6).string(`${function_id}`);
+        ws.cell(key, 7).string(`${value.phone_number}`);
+        ws.cell(key, 8).string(`${cnh}`);
+        ws.cell(key, 9).string(`${value.category_cnh}`);
+        ws.cell(key, 10)
+          .date(new Date(value.expiration_date_cnh))
+          .style({ numberFormat: 'DD/MM/YYYY' });
+        ws.cell(key, 11).string(`${status}`);
+        ws.cell(key, 12).string(`${value.street}`);
+        ws.cell(key, 13).string(`${value.number}`);
+        ws.cell(key, 14).string(`${value.district}`);
+        ws.cell(key, 15).string(`${value.city}`);
+        ws.cell(key, 16).string(`${value.state}`);
+        ws.cell(key, 17).string(`${value.zip_code}`);
+        ws.cell(key, 18).string(`${value.complement}`);
+
+        if (key % 2 === 0) {
+          ws.cell(key, 1, key, 18).style({
+            fill: {
+              type: 'pattern',
+              patternType: 'solid',
+              bgColor: '9bc2e6',
+              fgColor: 'ddebf7',
+            },
+          });
+        }
+      });
+
+      ws.row(5).filter({
+        firstRow: 1,
+        firstColumn: 1,
+        lastRow: 900,
+        lastColumn: 16,
+      });
+
+      ws.column(1).setWidth(9);
+      ws.column(2).setWidth(35);
+      ws.column(3).setWidth(13);
+      ws.column(4).setWidth(38);
+      ws.column(5).setWidth(11);
+      ws.column(6).setWidth(13);
+      ws.column(7).setWidth(13);
+      ws.column(8).setWidth(11);
+      ws.column(9).setWidth(11);
+      ws.column(10).setWidth(11);
+      ws.column(11).setWidth(11);
+      ws.column(12).setWidth(22);
+      ws.column(13).setWidth(8);
+      ws.column(14).setWidth(11);
+      ws.column(15).setWidth(25);
+      ws.column(16).setWidth(15);
+      ws.column(17).setWidth(11);
+      ws.column(18).setWidth(40);
+      const buffer = await wb.writeToBuffer();
+      ctx.body = buffer;
+    } catch (err) {
+      ctx.body = err;
+    }
+  },
 };

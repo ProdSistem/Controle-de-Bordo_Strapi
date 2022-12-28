@@ -1,13 +1,16 @@
 import { defaultFont, headerCenterStyle, headerLeftStyle } from './styles';
-import { filtersBoardRegister } from './filters';
-import { createTitleBoardRegister } from './title';
-import { itensBoardRegister } from './itens';
+import { filtersBoardRegister, filtersFunctionary } from './filters';
+import { createTitleBoardRegister, createTitleFunctionary } from './title';
+import { itensBoardRegister, itensFunctionary } from './itens';
 
 export default {
   defaultFont,
   headerLeftStyle,
+  itensFunctionary,
   headerCenterStyle,
   itensBoardRegister,
+  filtersFunctionary,
   filtersBoardRegister,
+  createTitleFunctionary,
   createTitleBoardRegister,
 };

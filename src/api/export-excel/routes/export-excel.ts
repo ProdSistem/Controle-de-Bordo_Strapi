@@ -9,5 +9,14 @@ export default {
         middlewares: [],
       },
     },
+    {
+      method: 'GET',
+      path: '/export-excel/functionary',
+      handler: 'export-excel.exportFunctionary',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };

@@ -33,3 +33,20 @@ export const filtersBoardRegister = async (
     },
   );
 };
+
+export const filtersFunctionary = async (registration, name, active) => {
+  return await strapi.entityService.findMany('api::functionary.functionary', {
+    populate: '*',
+    filters: {
+      name: {
+        $containsi: name ? name : '',
+      },
+      registration: {
+        $containsi: registration ? registration : '',
+      },
+      status: {
+        $containsi: active ? active : '',
+      },
+    },
+  });
+};
