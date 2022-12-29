@@ -18,5 +18,14 @@ export default {
         middlewares: [],
       },
     },
+    {
+      method: 'GET',
+      path: '/export-excel/vehicle',
+      handler: 'export-excel.exportVehicle',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };

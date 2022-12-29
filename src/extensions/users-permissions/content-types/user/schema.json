@@ -87,6 +87,9 @@
     "email_functional": {
       "type": "email",
       "unique": true
+    },
+    "name": {
+      "type": "string"
     }
   }
 }

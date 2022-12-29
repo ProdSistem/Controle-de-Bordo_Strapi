@@ -1,16 +1,27 @@
 import { defaultFont, headerCenterStyle, headerLeftStyle } from './styles';
-import { filtersBoardRegister, filtersFunctionary } from './filters';
-import { createTitleBoardRegister, createTitleFunctionary } from './title';
-import { itensBoardRegister, itensFunctionary } from './itens';
+import {
+  filtersBoardRegister,
+  filtersFunctionary,
+  filtersVehicles,
+} from './filters';
+import {
+  createTitleBoardRegister,
+  createTitleFunctionary,
+  createTitleVehicle,
+} from './title';
+import { itensBoardRegister, itensFunctionary, itensVehicles } from './itens';
 
 export default {
   defaultFont,
   headerLeftStyle,
-  itensFunctionary,
   headerCenterStyle,
+  itensVehicles,
+  itensFunctionary,
   itensBoardRegister,
+  filtersVehicles,
   filtersFunctionary,
   filtersBoardRegister,
+  createTitleVehicle,
   createTitleFunctionary,
   createTitleBoardRegister,
 };

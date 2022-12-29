@@ -30,6 +30,7 @@ export const filtersBoardRegister = async (
           $lte: date_final ? date_final : '2922-01-01',
         },
       },
+      limit: 17000,
     },
   );
 };
@@ -48,5 +49,36 @@ export const filtersFunctionary = async (registration, name, active) => {
         $containsi: active ? active : '',
       },
     },
+    limit: 17000,
+  });
+};
+
+export const filtersVehicles = async (
+  code,
+  plate,
+  brand,
+  vehicleName,
+  proprietaryType,
+) => {
+  return await strapi.entityService.findMany('api::vehicle.vehicle', {
+    populate: '*',
+    filters: {
+      code: {
+        $containsi: code ? code : '',
+      },
+      brand: {
+        $containsi: brand ? brand : '',
+      },
+      plate: {
+        $containsi: plate ? plate : '',
+      },
+      equipment_name: {
+        $containsi: vehicleName ? vehicleName : '',
+      },
+      proprietary_type: {
+        $containsi: proprietaryType ? proprietaryType : '',
+      },
+    },
+    limit: 17000,
   });
 };

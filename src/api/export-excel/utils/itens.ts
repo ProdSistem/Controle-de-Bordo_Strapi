@@ -37,3 +37,25 @@ export const itensFunctionary = [
   'CEP',
   'Complemento',
 ];
+
+export const itensVehicles = [
+  'Código',
+  'Nome do veículo',
+  'Código do Patrimônio',
+  'Fabricante',
+  'Modelo',
+  'Potência',
+  'Capacidade',
+  'Ano de Fabricação',
+  'Tipo',
+  'Combustível',
+  'Cor',
+  'Placa',
+  'Propriedade',
+  'Nome do Proprietário',
+  'Cadastrado Por',
+  'Data de Cadastro',
+  'Editado Por',
+  'Data da Alteração',
+  'Status',
+];

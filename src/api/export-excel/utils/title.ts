@@ -53,7 +53,7 @@ export const createTitleFunctionary = (
   }
 
   ws.cell(2, 1, 2, 18, true)
-    .string(`RELATÓRIO DE BORDO`)
+    .string(`RELATÓRIO DE COLABORADORES`)
     .style(headerCenterStyle);
 
   ws.cell(3, 1, 3, 1, true).string('FILTROS:').style(headerLeftStyle);
@@ -65,9 +65,7 @@ export const createTitleFunctionary = (
     .string(`Status: ${status}`)
     .style(headerLeftStyle);
   ws.cell(3, 16, 3, 18, true).date(new Date()).style(headerCenterStyle);
-  ws.cell(4, 12, 4, 18, true)
-    .string(`Endereço ${active}`)
-    .style(headerCenterStyle);
+  ws.cell(4, 12, 4, 18, true).string(`Endereço`).style(headerCenterStyle);
 
   itens.map((item, key) => {
     if (key + 1 <= 11) {
@@ -79,6 +77,49 @@ export const createTitleFunctionary = (
         .string(`${item}`)
         .style(headerCenterStyle);
     }
+  });
+  return ws;
+};
+
+export const createTitleVehicle = (
+  ws,
+  itens,
+  code,
+  plate,
+  brand,
+  vehicleName,
+  proprietaryType,
+) => {
+  let status;
+  if (proprietaryType === '1') {
+    status = 'Próprio';
+  } else if (proprietaryType === '2') {
+    status = 'Terceiros';
+  } else {
+    status = 'Todos';
+  }
+
+  ws.cell(2, 1, 2, 19, true)
+    .string(`RELATÓRIO DE VEÍCULOS`)
+    .style(headerCenterStyle);
+
+  ws.cell(3, 1, 3, 1, true).string('FILTROS:').style(headerLeftStyle);
+  ws.cell(3, 2, 3, 3, true).string(`Código: ${code}`).style(headerLeftStyle);
+  ws.cell(3, 4, 3, 6, true)
+    .string(`Nome do veículo: ${vehicleName}`)
+    .style(headerLeftStyle);
+  ws.cell(3, 7, 3, 9, true).string(`Placa: ${plate}`).style(headerLeftStyle);
+  ws.cell(3, 10, 3, 12, true).string(`Marca: ${brand}`).style(headerLeftStyle);
+  ws.cell(3, 13, 3, 14, true)
+    .string(`Propriedade: ${status}`)
+    .style(headerLeftStyle);
+  ws.cell(3, 15, 3, 17, true).style(headerLeftStyle);
+  ws.cell(3, 18, 3, 19, true).date(new Date()).style(headerCenterStyle);
+
+  itens.map((item, key) => {
+    ws.cell(4, key + 1)
+      .string(`${item}`)
+      .style(headerCenterStyle);
   });
   return ws;
 };
