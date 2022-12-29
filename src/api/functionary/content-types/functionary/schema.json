@@ -33,11 +33,6 @@
     "expiration_date_cnh": {
       "type": "date"
     },
-    "function": {
-      "type": "integer",
-      "unique": false,
-      "required": true
-    },
     "created_for": {
       "type": "relation",
       "relation": "oneToOne",
@@ -99,6 +94,11 @@
     "registration": {
       "type": "string",
       "unique": true
+    },
+    "function_id": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::function.function"
     }
   }
 }
