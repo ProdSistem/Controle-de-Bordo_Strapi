@@ -237,11 +237,11 @@ export default {
       vehicles.map((value, keys) => {
         let proprietaryType;
 
-        if (value.proprietaryType === 1 || value.proprietaryType === '1') {
+        if (value.proprietary_Type === 1 || value.proprietary_Type === '1') {
           proprietaryType = 'Próprio';
         } else if (
-          value.proprietaryType === 2 ||
-          value.proprietaryType === '2'
+          value.proprietary_Type === 2 ||
+          value.proprietary_Type === '2'
         ) {
           proprietaryType = 'Terceiros';
         } else {
