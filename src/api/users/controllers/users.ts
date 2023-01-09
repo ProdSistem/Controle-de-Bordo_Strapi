@@ -8,14 +8,60 @@ export default {
       };
       const offset = page * pageSize - pageSize;
       const limit = pageSize;
+      const { name, cpf, id, active } = ctx.query;
+      let data = '';
+      let total = 1;
 
-      const data = await strapi.db
-        .query('plugin::users-permissions.user')
-        .findMany({ offset, limit });
+      if (name || cpf || id || active) {
+        data = await strapi.entityService.findMany(
+          'plugin::users-permissions.user',
+          {
+            filters: {
+              name: {
+                $containsi: name ? name : '',
+              },
+              cpf: {
+                $containsi: cpf ? cpf : '',
+              },
+              id: {
+                $containsi: id ? id : '',
+              },
+              status: {
+                $containsi: active ? active : '',
+              },
+            },
+            offset,
+            limit,
+            populate: '*',
+          },
+        );
 
-      const total = await strapi.db
-        .query('plugin::users-permissions.user')
-        .count({});
+        total = await strapi.db.query('plugin::users-permissions.user').count({
+          filters: {
+            name: {
+              $containsi: name ? name : '',
+            },
+            cpf: {
+              $containsi: cpf ? cpf : '',
+            },
+            id: {
+              $containsi: id ? id : '',
+            },
+            status: {
+              $containsi: active ? active : '',
+            },
+          },
+        });
+      } else {
+        data = await strapi.entityService.findMany(
+          'plugin::users-permissions.user',
+          { offset, limit },
+        );
+
+        total = await strapi.db
+          .query('plugin::users-permissions.user')
+          .count({});
+      }
 
       const pageCount = pageSize ? Math.ceil(total / pageSize) : 1;
 
