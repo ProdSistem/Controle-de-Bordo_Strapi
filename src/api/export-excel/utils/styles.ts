@@ -2,12 +2,17 @@ export const defaultFont = {
   defaultFont: {
     size: 11,
     name: 'Calibri',
-  }
-}
+  },
+};
 
 export const headerCenterStyle = {
   font: { color: 'FFFFFF' },
-  alignment: { wrapText: true, horizontal: 'center', shrinkToFit: false, vertical: 'center'},
+  alignment: {
+    wrapText: true,
+    horizontal: 'center',
+    shrinkToFit: false,
+    vertical: 'center',
+  },
   height: '100pt',
   width: '160pt',
   border: {
@@ -15,31 +20,41 @@ export const headerCenterStyle = {
     right: { style: 'none' },
     top: { style: 'thin', color: '9bc2e6' },
     bottom: { style: 'thin', color: '9bc2e6' },
-    outline: true
+    outline: true,
   },
-  fill: { type: 'pattern', patternType: 'solid', bgColor: '9bc2e6', fgColor: '5b9bd5' },
+  fill: {
+    type: 'pattern',
+    patternType: 'solid',
+    bgColor: '9bc2e6',
+    fgColor: '5b9bd5',
+  },
   numberFormat: 'mm-yyyy',
-  sheetFormat:{ 'baseColWidth': 20 }
-}
+  sheetFormat: { baseColWidth: 20 },
+};
 
 export const headerLeftStyle = {
   font: {
     color: 'FFFFFF',
-    bold: true
+    bold: true,
   },
   alignment: {
-    wrapText: false,
+    wrapText: true,
     horizontal: 'left',
     shrinkToFit: false,
+    vertical: 'center',
   },
   border: {
     left: { style: 'none' },
     right: { style: 'none' },
     top: { style: 'thin', color: '9bc2e6' },
     bottom: { style: 'thin', color: '9bc2e6' },
-    outline: true
+    outline: true,
   },
-  fill: {  type: 'pattern', patternType: 'solid', bgColor: '9bc2e6', fgColor: '5b9bd5' },
-  size:{ width: 90 }
-}
-
+  fill: {
+    type: 'pattern',
+    patternType: 'solid',
+    bgColor: '9bc2e6',
+    fgColor: '5b9bd5',
+  },
+  size: { width: 90 },
+};

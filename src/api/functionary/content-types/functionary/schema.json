@@ -23,10 +23,6 @@
       "required": true,
       "unique": true
     },
-    "registration": {
-      "type": "integer",
-      "unique": true
-    },
     "cnh": {
       "type": "biginteger",
       "unique": true
@@ -36,11 +32,6 @@
     },
     "expiration_date_cnh": {
       "type": "date"
-    },
-    "function": {
-      "type": "integer",
-      "unique": false,
-      "required": true
     },
     "created_for": {
       "type": "relation",
@@ -99,6 +90,15 @@
     "email": {
       "type": "string",
       "unique": true
+    },
+    "registration": {
+      "type": "string",
+      "unique": true
+    },
+    "function_id": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::function.function"
     }
   }
 }

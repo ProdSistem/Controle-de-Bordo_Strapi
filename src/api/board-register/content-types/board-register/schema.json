@@ -73,6 +73,12 @@
     "date_register": {
       "type": "date",
       "required": true
+    },
+    "observation": {
+      "type": "string"
+    },
+    "refuel_km": {
+      "type": "decimal"
     }
   }
 }
