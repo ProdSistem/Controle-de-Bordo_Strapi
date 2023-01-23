@@ -69,7 +69,7 @@ export default {
           .number(Number(value.refuel_unit_value))
           .style({ numberFormat: 'R$#,##0.00; (R$#,##0.00); -' });
         ws.cell(key, 17)
-          .formula(`N${key} * O${key}`)
+          .formula(`O${key} * P${key}`)
           .style({ numberFormat: 'R$#,##0.00; (R$#,##0.00); -' });
         if (key % 2 === 0) {
           ws.cell(key, 1, key, 17).style({
