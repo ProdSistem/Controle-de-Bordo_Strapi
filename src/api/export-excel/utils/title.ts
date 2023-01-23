@@ -9,7 +9,7 @@ export const createTitleBoardRegister = (
   date_final,
   plateVehicle,
 ) => {
-  ws.cell(2, 1, 2, 16, true)
+  ws.cell(2, 1, 2, 17, true)
     .string(`RELATÓRIO DE BORDO`)
     .style(headerCenterStyle);
 
@@ -26,7 +26,7 @@ export const createTitleBoardRegister = (
   ws.cell(3, 11, 3, 13, true)
     .string(`A partir de: ${date_initial} Até:  ${date_final}`)
     .style(headerLeftStyle);
-  ws.cell(3, 14, 3, 16, true).date(new Date()).style(headerCenterStyle);
+  ws.cell(3, 14, 3, 17, true).date(new Date()).style(headerCenterStyle);
 
   itens.map((item, key) => {
     ws.cell(4, key + 1)
