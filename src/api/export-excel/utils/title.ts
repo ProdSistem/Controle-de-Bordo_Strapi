@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { headerCenterStyle, headerLeftStyle } from './styles';
 
 export const createTitleBoardRegister = (
@@ -9,6 +10,14 @@ export const createTitleBoardRegister = (
   date_final,
   plateVehicle,
 ) => {
+  moment.locale('pt-br');
+  const dateInitial = date_initial
+    ? moment(date_initial).format('DD-MM-YYYY')
+    : '';
+
+  const dateFinal = date_final ? moment(date_final).format('DD-MM-YYYY') : '';
+  const date = date_final ? new Date(date_final) : new Date();
+
   ws.cell(2, 1, 2, 17, true)
     .string(`RELATÓRIO DE BORDO`)
     .style(headerCenterStyle);
@@ -24,9 +33,9 @@ export const createTitleBoardRegister = (
     .string(`Centro de resultado: ${cost_center_code}`)
     .style(headerLeftStyle);
   ws.cell(3, 11, 3, 13, true)
-    .string(`A partir de: ${date_initial} Até:  ${date_final}`)
+    .string(`A partir de: ${dateInitial} Até:  ${dateFinal}`)
     .style(headerLeftStyle);
-  ws.cell(3, 14, 3, 17, true).date(new Date()).style(headerCenterStyle);
+  ws.cell(3, 14, 3, 17, true).date(date).style(headerCenterStyle);
 
   itens.map((item, key) => {
     ws.cell(4, key + 1)
