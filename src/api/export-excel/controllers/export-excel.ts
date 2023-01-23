@@ -58,18 +58,21 @@ export default {
           .style({ numberFormat: '#,##0; (#,##0); -' });
         ws.cell(key, 11).string(`${value.origin}`);
         ws.cell(key, 12).string(`${value.destination}`);
-        ws.cell(key, 13).string(`${refuelling_status}`);
-        ws.cell(key, 14)
+        ws.cell(key, 13)
+          .date(new Date(value.date_register))
+          .style({ numberFormat: 'DD/MM/YYYY' });
+        ws.cell(key, 14).string(`${refuelling_status}`);
+        ws.cell(key, 15)
           .number(Number(value.refuel_qty))
           .style({ numberFormat: '#,##0; (#,##0); -' });
-        ws.cell(key, 15)
+        ws.cell(key, 16)
           .number(Number(value.refuel_unit_value))
           .style({ numberFormat: 'R$#,##0.00; (R$#,##0.00); -' });
-        ws.cell(key, 16)
+        ws.cell(key, 17)
           .formula(`N${6 + keys} * O${6 + keys}`)
           .style({ numberFormat: 'R$#,##0.00; (R$#,##0.00); -' });
         if (key % 2 === 0) {
-          ws.cell(key, 1, key, 16).style({
+          ws.cell(key, 1, key, 17).style({
             fill: {
               type: 'pattern',
               patternType: 'solid',
@@ -84,7 +87,7 @@ export default {
         firstRow: 1,
         firstColumn: 1,
         lastRow: 900,
-        lastColumn: 16,
+        lastColumn: 17,
       });
 
       ws.column(1).setWidth(11);
@@ -103,6 +106,7 @@ export default {
       ws.column(14).setWidth(16);
       ws.column(15).setWidth(12);
       ws.column(16).setWidth(12);
+      ws.column(17).setWidth(12);
 
       const buffer = await wb.writeToBuffer();
       ctx.body = buffer;
