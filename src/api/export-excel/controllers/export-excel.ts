@@ -43,7 +43,7 @@ export default {
         ws.cell(key, 3).string(`${value.functionary_id?.name}`);
         ws.cell(key, 4).string(`${value.cost_center_id?.code}`);
         ws.cell(key, 5)
-          .date(new Date(value.createdAt))
+          .date(new Date(value.date_register))
           .style({ numberFormat: 'DD/MM/YYYY' });
         ws.cell(key, 6).string(`${value.vehicle_id?.code}`);
         ws.cell(key, 7).string(`${value.vehicle_id?.plate}`);
@@ -59,7 +59,7 @@ export default {
         ws.cell(key, 11).string(`${value.origin}`);
         ws.cell(key, 12).string(`${value.destination}`);
         ws.cell(key, 13)
-          .date(new Date(value.date_register))
+          .date(new Date(value.createdAt))
           .style({ numberFormat: 'DD/MM/YYYY' });
         ws.cell(key, 14).string(`${refuelling_status}`);
         ws.cell(key, 15)
@@ -71,8 +71,10 @@ export default {
         ws.cell(key, 17)
           .formula(`O${key} * P${key}`)
           .style({ numberFormat: 'R$#,##0.00; (R$#,##0.00); -' });
+        ws.cell(key, 4).string(`${value.cost_center_id?.code}`);
+
         if (key % 2 === 0) {
-          ws.cell(key, 1, key, 17).style({
+          ws.cell(key, 1, key, 18).style({
             fill: {
               type: 'pattern',
               patternType: 'solid',
@@ -87,7 +89,7 @@ export default {
         firstRow: 1,
         firstColumn: 1,
         lastRow: 900,
-        lastColumn: 17,
+        lastColumn: 18,
       });
 
       ws.column(1).setWidth(11);
@@ -107,6 +109,7 @@ export default {
       ws.column(15).setWidth(12);
       ws.column(16).setWidth(12);
       ws.column(17).setWidth(12);
+      ws.column(18).setWidth(40);
 
       const buffer = await wb.writeToBuffer();
       ctx.body = buffer;
