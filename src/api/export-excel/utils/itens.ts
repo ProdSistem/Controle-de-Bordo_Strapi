@@ -3,7 +3,7 @@ export const itensBoardRegister = [
   'Matrícula Condutor',
   'Nome do Condutor',
   'Centro de Resultado',
-  'Data',
+  'Data do Deslocamento',
   'Código Veículo',
   'Placa',
   'Km Inicial',
@@ -11,10 +11,12 @@ export const itensBoardRegister = [
   'Km Rodado',
   'Itinerário Origem',
   'Itinerário Destino',
+  'Data de Cadastro',
   'Houve Abastecimento',
   'Quantidade Abastecida',
   'R$ Unit',
   'R$ Total',
+  'Observação',
 ];
 
 export const itensFunctionary = [
