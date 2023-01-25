@@ -71,7 +71,7 @@ export default {
         ws.cell(key, 17)
           .formula(`O${key} * P${key}`)
           .style({ numberFormat: 'R$#,##0.00; (R$#,##0.00); -' });
-        ws.cell(key, 4).string(`${value.cost_center_id?.code}`);
+        ws.cell(key, 18).string(`${value.observation}`);
 
         if (key % 2 === 0) {
           ws.cell(key, 1, key, 18).style({
