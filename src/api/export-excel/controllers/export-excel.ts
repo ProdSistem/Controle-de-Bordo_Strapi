@@ -73,18 +73,18 @@ export default {
         ws.cell(key, 17)
           .formula(`O${key} * P${key}`)
           .style({ numberFormat: 'R$#,##0.00; (R$#,##0.00); -' });
-        ws.cell(key, 17).string(`${freight_status}`);
-        ws.cell(key, 18)
+        ws.cell(key, 18).string(`${freight_status}`);
+        ws.cell(key, 19)
         .number(Number(value.unit_freigth_amount))
         .style({ numberFormat: 'R$#,##0.00; (R$#,##0.00); -' });
-        ws.cell(key, 19).number(Number(value.freight_km))
+        ws.cell(key, 20).number(Number(value.freight_km))
         .style({ numberFormat: '#,##0; (#,##0); -' });        
-        ws.cell(key, 20)
+        ws.cell(key, 21)
         .number(Number(value.total_freight_amount))
         .style({ numberFormat: 'R$#,##0.00; (R$#,##0.00); -' });
         
         if (key % 2 === 0) {
-          ws.cell(key, 1, key, 20).style({
+          ws.cell(key, 1, key, 21).style({
             fill: {
               type: 'pattern',
               patternType: 'solid',
@@ -99,7 +99,7 @@ export default {
         firstRow: 1,
         firstColumn: 1,
         lastRow: 900,
-        lastColumn: 20,
+        lastColumn: 21,
       });
 
       ws.column(1).setWidth(11);
@@ -122,6 +122,7 @@ export default {
       ws.column(18).setWidth(12);
       ws.column(19).setWidth(12);
       ws.column(20).setWidth(12);
+      ws.column(21).setWidth(12);
 
       const buffer = await wb.writeToBuffer();
       ctx.body = buffer;
