@@ -45,7 +45,7 @@ export default {
         ws.cell(key, 3).string(`${value.functionary_id?.name}`);
         ws.cell(key, 4).string(`${value.cost_center_id?.code}`);
         ws.cell(key, 5)
-          .date(new Date(value.createdAt))
+          .date(new Date(value.date_register))
           .style({ numberFormat: 'DD/MM/YYYY' });
         ws.cell(key, 6).string(`${value.vehicle_id?.code}`);
         ws.cell(key, 7).string(`${value.vehicle_id?.plate}`);
@@ -60,15 +60,18 @@ export default {
           .style({ numberFormat: '#,##0; (#,##0); -' });
         ws.cell(key, 11).string(`${value.origin}`);
         ws.cell(key, 12).string(`${value.destination}`);
-        ws.cell(key, 13).string(`${refuelling_status}`);
-        ws.cell(key, 14)
+        ws.cell(key, 13)
+          .date(new Date(value.createdAt))
+          .style({ numberFormat: 'DD/MM/YYYY' });
+        ws.cell(key, 14).string(`${refuelling_status}`);
+        ws.cell(key, 15)
           .number(Number(value.refuel_qty))
           .style({ numberFormat: '#,##0; (#,##0); -' });
-        ws.cell(key, 15)
+        ws.cell(key, 16)
           .number(Number(value.refuel_unit_value))
           .style({ numberFormat: 'R$#,##0.00; (R$#,##0.00); -' });
-        ws.cell(key, 16)
-          .formula(`N${6 + keys} * O${6 + keys}`)
+        ws.cell(key, 17)
+          .formula(`O${key} * P${key}`)
           .style({ numberFormat: 'R$#,##0.00; (R$#,##0.00); -' });
         ws.cell(key, 17).string(`${freight_status}`);
         ws.cell(key, 18)

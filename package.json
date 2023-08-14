@@ -17,6 +17,7 @@
     "@strapi/strapi": "4.5.5",
     "excel4node": "^1.8.0",
     "pg": "8.6.0",
+    "moment": "^2.29.4",
     "strapi-plugin-refreshing": "1.1.5"
   },
   "author": {
