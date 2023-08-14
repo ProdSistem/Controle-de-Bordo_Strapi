@@ -16,7 +16,10 @@ export const itensBoardRegister = [
   'Quantidade Abastecida',
   'R$ Unit',
   'R$ Total',
-  'Observação',
+  'Houve Frete',
+  'R$ Unit Frete',
+  'Km Cobrado',
+  'R$ Total Frete',
 ];
 
 export const itensFunctionary = [

@@ -1,6 +1,8 @@
 name: Deploy GN Center BackEnd 
 
 on:
+  release:
+    types: [published]
   workflow_dispatch:
   push:
     branches: [main, develop]
