@@ -26,6 +26,8 @@ services:
       - ./yarn.lock:/opt/app/yarn.lock
       - ./.env:/opt/app/.env
       - ./public/uploads:/opt/app/public/uploads
+    depends_on:
+      - db
     ports:
       - '1335:1335'
     networks:
